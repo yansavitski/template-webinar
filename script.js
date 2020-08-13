@@ -20,6 +20,17 @@ const addItemToContainer = todoTitle => {
 
 todos.forEach(addItemToContainer)
 
+document.addEventListener("click", event => {
+    const target = event.target
+
+    if (target.classList.contains("control_remove")) {
+        const todo = target.closest(".todo")
+
+        todo.remove()
+
+    }
+})
+
 addTodoForm.addEventListener("submit", event => {
     event.preventDefault()
 
