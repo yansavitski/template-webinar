@@ -35,6 +35,11 @@ document.addEventListener("click", event => {
         addTodoForm.querySelector(".addTodoForm__field_input").value = todoTitle
 
         todo.classList.add("editing")
+    } else if (target.classList.contains("control_duplicate")) {
+        const todo = event.target.closest(".todo")
+        const todoTitle = todo.querySelector(".todo__title").textContent
+
+        addItemToContainer(todoTitle)
     }
 })
 
