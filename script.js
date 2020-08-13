@@ -8,6 +8,7 @@ const todos = [
     'Решить задачу на Codewars',
 ]
 const todoListContainer = document.querySelector(".todoList")
+const addTodoForm = document.querySelector(".addTodoForm")
 
 const addItemToContainer = todoTitle => {
     const todoElement = document.querySelector("#todoTemplate").content.cloneNode(true)
@@ -18,3 +19,13 @@ const addItemToContainer = todoTitle => {
 }
 
 todos.forEach(addItemToContainer)
+
+addTodoForm.addEventListener("submit", event => {
+    event.preventDefault()
+
+    const todoTitle = addTodoForm.querySelector(".addTodoForm__field_input").value
+
+    addItemToContainer(todoTitle)
+
+    addTodoForm.reset()
+})
