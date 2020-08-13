@@ -9,18 +9,12 @@ const todos = [
 ]
 const todoListContainer = document.querySelector(".todoList")
 
-todos.forEach(todo => {
-    const templateTodo = `
-        <article class="todoList__item todo">
-            <h5 class="todo__title todo__title_theme_dark">${todo}</h5>
+const addItemToContainer = todoTitle => {
+    const todoElement = document.querySelector("#todoTemplate").content.cloneNode(true)
 
-            <div class="todo__controls">
-                <button type="button" class="todo__control control control_edit" />
-                <button type="button" class="todo__control control control_duplicate" />
-                <button type="button" class="todo__control control control_remove" />
-            </div>
-        </article>
-    `
+    todoElement.querySelector(".todo__title").textContent = todoTitle
 
-    todoListContainer.insertAdjacentHTML("beforeend", templateTodo)
-})
+    todoListContainer.append(todoElement)
+}
+
+todos.forEach(addItemToContainer)
