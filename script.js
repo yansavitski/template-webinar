@@ -28,15 +28,30 @@ document.addEventListener("click", event => {
 
         todo.remove()
 
+    } else if (target.classList.contains("control_edit")) {
+        const todo = event.target.closest(".todo")
+        const todoTitle = todo.querySelector(".todo__title").textContent
+
+        addTodoForm.querySelector(".addTodoForm__field_input").value = todoTitle
+
+        todo.classList.add("editing")
     }
 })
 
 addTodoForm.addEventListener("submit", event => {
     event.preventDefault()
 
+    const editingTodo = document.querySelector(".editing")
+
     const todoTitle = addTodoForm.querySelector(".addTodoForm__field_input").value
 
-    addItemToContainer(todoTitle)
+    if (editingTodo) {
+        editingTodo.querySelector(".todo__title").textContent = todoTitle
+
+        editingTodo.classList.remove("editing")
+    } else {
+        addItemToContainer(todoTitle)
+    }
 
     addTodoForm.reset()
 })
